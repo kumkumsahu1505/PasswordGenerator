@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random password generator</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <link rel="stylesheet" href="random.css">
+</head>
+<body>
+    <div id="main">
+        <h1>generate a <span><br> random password</span></h1>
+        <div class="display">
+            <input type="text" id="password" placeholder="here is your random password">
+            <p style="display: none;">copied</p>
+            <i onclick="copy()" class="ri-file-copy-2-fill"></i>
+            
+        </div>
+        <button onclick="createPass()"><i class="ri-ai-generate"></i>Generate password</button>
+    </div>
+    <script>
+const passBox= document.getElementById("password")
+const length = 12;
+const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercase = "abcdefghijklmnopqrstuvwxyz";
+const number = "1234567890";
+const symbol = "!@#$%^&*()>?{}[]_~";
+const allChar = uppercase+lowercase+number+symbol;
+
+function createPass (){
+    let pass="";
+    pass +=uppercase[Math.floor(Math.random()*uppercase.length)]
+    pass +=symbol[Math.floor(Math.random()*symbol.length)]
+    while (length>pass.length){
+        pass+=allChar[Math.floor(Math.random()*allChar.length)]
+    }
+    passBox.value = pass;
+}
+
+function copy(){
+    passBox.select();
+    document.execCommand("copy")
+}
+
+    </script>
+</body>
+</html>
